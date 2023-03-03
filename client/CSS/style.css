@@ -1,0 +1,77 @@
+:root {
+    --blue-gradient-dark: linear-gradient(200deg, #14a586, #016aa3);
+    --blue-gradient-light: linear-gradient(50deg, #1beabd, #10abff);
+    --blue-gradient-light-reversed: linear-gradient(50deg, #10abff, #1beabd);
+    --green-gradient-dark: linear-gradient(360deg, #2a842a , #599c1e);
+    --reen-gradient-dark: #2a842a;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: autos;
+    grid-template-areas:
+      "header"
+      "main"
+      "main"
+      "main"
+      "footer";
+    grid-auto-rows: auto;
+    height: 100vh;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    color: white;
+  }
+  
+  header,
+  main,
+  footer,
+  .userCommand,
+  .divBtnMain,
+  .mainBtn {
+    display: flex;
+  }
+  
+  header {
+    grid-area: header;
+    background: var(--green-gradient-dark);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  main {
+    grid-area: main;
+    background: var(--blue-gradient-dark);
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  footer {
+    grid-area: footer;
+    background: var(--green-gradient-dark);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .titel {
+    font-size: 180%;
+  }
+  
+  .userCommand {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 135%;
+    margin: 30px;
+  }
+  
+  .divBtnMain {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 30px;
+  }
