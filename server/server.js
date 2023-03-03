@@ -7,7 +7,7 @@ mongoose.set('strictQuery', false)
 
 mongoose
   .connect(
-    'mongodb+srv://ellisarn:SilleNra2005@freecluster.vquf0xo.mongodb.net/LA1304?retryWrites=true&w=majority'
+    'mongodb+srv://LA1304-server:DKyec3UHULGCMFSG@freecluster.vquf0xo.mongodb.net/LA1304?retryWrites=true&w=majority'
   )
   .then(() => {
     console.log('Connected to database')
@@ -16,16 +16,18 @@ mongoose
       console.log('Server started on port 3000')
     })
 
-    const hauptstadtShema = new mongoose.Schema({
-      Kontinent: [
-        {
-          land: String,
-          hauptstadt: String,
-        },
-      ],
+    const datenSchema = new mongoose.Schema({
+      land: String,
+      hauptstadt: String,
     })
 
-    const Hauptstadt = mongoose.model('Kontinent', hauptstadtShema)
+    const Welt = mongoose.model('country', datenSchema)
 
-    console.log(Hauptstadt.find({ 'Kontinent.land': 'Deutschland' }))
+    Welt.find({}, (err, data) => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log(data)
+      }
+    })
   })
