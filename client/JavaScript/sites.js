@@ -19,6 +19,10 @@ const renderAmerica = () => {}
 
 const renderAsia = () => {}
 
-const renderEurope = () => {}
+const renderEurope = () => {
+  import('./quiz/europe.js').then((module) => {
+    module.europetest()
+  })
+}
 
 const renderWorld = () => {}
