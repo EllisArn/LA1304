@@ -13,3 +13,13 @@ const renderHome = () => {
       <a class="mainBtn" href="#">Ganze Welt</a>
   </div>`
 }
+
+const renderAfrica = () => {}
+
+const renderAmerica = () => {}
+
+const renderAsia = () => {}
+
+const renderEurope = () => {}
+
+const renderWorld = () => {}
