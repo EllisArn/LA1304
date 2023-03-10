@@ -3,8 +3,8 @@ const main = document.querySelector('main')
 export function renderEasyOrHard(){
     main.innerHTML = `<p class="userCommand">Wählen Sie ein Schwierigkeitsgrad</p>
     <div class="divBtnMain">
-        <a id="easyBtn" class="mainBtn" href="#">Easy (ohne Timer)</a>
-        <a id="hardBtn" class="mainBtn" href="#">Hard (mit Timer)</a>
+        <a id="easyBtn" class="mainBtn">Easy (ohne Timer)</a>
+        <a id="hardBtn" class="mainBtn">Hard (mit Timer)</a>
     </div>`;
 
     document.getElementById("easyBtn").addEventListener("click", easyBtnClicked);
@@ -12,9 +12,9 @@ export function renderEasyOrHard(){
 }
 
 function easyBtnClicked(){
-    console.log("Easy button was clicked");
+    sessionStorage.setItem("mode", "easy");
 }
 
 function hardBtnClicked(){
-    console.log("Hard button was clicked");
+    sessionStorage.setItem("mode", "hard");
 }

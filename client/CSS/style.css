@@ -3,7 +3,7 @@
   --blue-gradient-light: linear-gradient(50deg, #1beabd, #10abff);
   --blue-gradient-light-reversed: linear-gradient(50deg, #10abff, #1beabd);
   --green-gradient-dark: linear-gradient(360deg, #2a842a , #599c1e);
-  --reen-gradient-dark: #2a842a;
+  --text-color-btn: #2d2d9c;
 }
 
 .container {
@@ -87,6 +87,7 @@ footer {
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  color: var(--text-color-btn);
   height: 150px;
   width: 270px;
   margin: 20px;
