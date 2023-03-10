@@ -1,4 +1,4 @@
-const main = document.querySelector('main')
+const main = document.querySelector("main");
 
 const renderHome = () => {
   main.innerHTML = `<p class="userCommand">Wählen Sie ein Gebiet</p>
@@ -8,19 +8,19 @@ const renderHome = () => {
       <a class="mainBtn" href="#asia">Asien</a>
       <a class="mainBtn" href="#europe">Europa</a>
       <a class="mainBtn" href="#world">Ganze Welt</a>
-  </div>`
-}
+  </div>`;
+};
 
 const renderAfrica = () => {
-  import('./easyOrHard.js').then((module) => {
+  import('./renderEasyOrHard.js').then((module) => {
     module.renderEasyOrHard()
   })
-}
+};
 
-const renderAmerica = () => {}
+const renderAmerica = () => {};
 
-const renderAsia = () => {}
+const renderAsia = () => {};
 
-const renderEurope = () => {}
+const renderEurope = () => {};
 
-const renderWorld = () => {}
+const renderWorld = () => {};
