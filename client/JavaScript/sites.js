@@ -1,8 +1,6 @@
 const main = document.querySelector('main')
-const customCSS = document.getElementById('customCSS')
 
 const renderHome = () => {
-  customCSS.href = './CSS/home1.css'
   main.innerHTML = `<p class="userCommand">Wählen Sie ein Gebiet</p>
   <div class="divBtnMain">
       <a class="mainBtn" href="#africa">Afrika</a>
@@ -13,16 +11,16 @@ const renderHome = () => {
   </div>`
 }
 
-const renderAfrica = () => {}
+const renderAfrica = () => {
+  import('./renderEasyOrHard.js').then((module) => {
+    module.renderEasyOrHard()
+  })
+}
 
 const renderAmerica = () => {}
 
 const renderAsia = () => {}
 
-const renderEurope = () => {
-  import('./quiz/europe.js').then((module) => {
-    module.europetest()
-  })
-}
+const renderEurope = () => {}
 
 const renderWorld = () => {}
