@@ -3,6 +3,14 @@ const express = require('express')
 
 const app = express()
 
+app.get('/europe/:id', async (req, res) => {
+  const { id } = req.params
+
+  const question = await Question.findById(id)
+
+  res.json(question)
+})
+
 mongoose.set('strictQuery', false)
 
 mongoose
@@ -17,6 +25,7 @@ mongoose
     })
 
     const datenSchema = new mongoose.Schema({
+      kontinent: String,
       land: String,
       hauptstadt: String,
     })
