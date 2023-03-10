@@ -12,15 +12,35 @@ const renderHome = () => {
 }
 
 const renderAfrica = () => {
+  import('./quiz/europe.js').then((module) => {
+    module.europetest()
+  })
+
   import('./renderEasyOrHard.js').then((module) => {
     module.renderEasyOrHard()
   })
 }
 
-const renderAmerica = () => {}
+const renderAmerica = () => {
+  import('./quiz/america.js').then((module) => {
+    module.americatest()
+  })
+}
 
-const renderAsia = () => {}
+const renderAsia = () => {
+  import('./quiz/asia.js').then((module) => {
+    module.asiatest()
+  })
+}
 
-const renderEurope = () => {}
+const renderEurope = () => {
+  import('./quiz/europe.js').then((module) => {
+    module.europetest()
+  })
+}
 
-const renderWorld = () => {}
+const renderWorld = () => {
+  import('./quiz/world.js').then((module) => {
+    module.worldtest()
+  })
+}

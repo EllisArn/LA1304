@@ -24,6 +24,42 @@ mongoose
     console.log('Connected to database')
   })
 
+app.get('/africa', (req, res) => {
+  Welt.find(
+    { Kontinent: 'Afrika' },
+    { Land: 1, Hauptstadt: 1, _id: 0 },
+    (err, data) => {
+      res.json(data)
+    }
+  ).catch((err) =>
+    console.log('Fehler beim Abrufen von Daten aus der Datenbank:', err)
+  )
+})
+
+app.get('/america', (req, res) => {
+  Welt.find(
+    { Kontinent: 'Amerika' },
+    { Land: 1, Hauptstadt: 1, _id: 0 },
+    (err, data) => {
+      res.json(data)
+    }
+  ).catch((err) =>
+    console.log('Fehler beim Abrufen von Daten aus der Datenbank:', err)
+  )
+})
+
+app.get('/asia', (req, res) => {
+  Welt.find(
+    { Kontinent: 'Asien' },
+    { Land: 1, Hauptstadt: 1, _id: 0 },
+    (err, data) => {
+      res.json(data)
+    }
+  ).catch((err) =>
+    console.log('Fehler beim Abrufen von Daten aus der Datenbank:', err)
+  )
+})
+
 app.get('/europe', (req, res) => {
   Welt.find(
     { Kontinent: 'Europa' },
@@ -32,6 +68,14 @@ app.get('/europe', (req, res) => {
       res.json(data)
     }
   ).catch((err) =>
+    console.log('Fehler beim Abrufen von Daten aus der Datenbank:', err)
+  )
+})
+
+app.get('/world', (req, res) => {
+  Welt.find({}, { Land: 1, Hauptstadt: 1, _id: 0 }, (err, data) => {
+    res.json(data)
+  }).catch((err) =>
     console.log('Fehler beim Abrufen von Daten aus der Datenbank:', err)
   )
 })
