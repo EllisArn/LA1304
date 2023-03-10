@@ -6,7 +6,7 @@ const app = express()
 app.get('/europe/:id', async (req, res) => {
   const { id } = req.params
 
-  const question = await Question.findById(id)
+  const question = await question.findById(id)
 
   res.json(question)
 })

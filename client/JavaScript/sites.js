@@ -3,14 +3,13 @@ const customCSS = document.getElementById('customCSS')
 
 const renderHome = () => {
   customCSS.href = './CSS/home1.css'
-
   main.innerHTML = `<p class="userCommand">Wählen Sie ein Gebiet</p>
   <div class="divBtnMain">
-      <a class="mainBtn" href="#">Afrika</a>
-      <a class="mainBtn" href="#">Amerika</a>
-      <a class="mainBtn" href="#">Asien</a>
-      <a class="mainBtn" href="#">Europa</a>
-      <a class="mainBtn" href="#">Ganze Welt</a>
+      <a class="mainBtn" href="#africa">Afrika</a>
+      <a class="mainBtn" href="#america">Amerika</a>
+      <a class="mainBtn" href="#asia">Asien</a>
+      <a class="mainBtn" href="#europe">Europa</a>
+      <a class="mainBtn" href="#world">Ganze Welt</a>
   </div>`
 }
 
