@@ -56,6 +56,10 @@ footer {
   align-items: center;
 }
 
+#copyrightFooter{
+  margin: 0;
+}
+
 .titel {
   font-size: 180%;
   text-decoration: none;
