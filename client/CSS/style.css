@@ -68,8 +68,9 @@ footer {
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-size: 135%;
+  font-size: 170%;
   margin: 30px;
+  text-align: center;
 }
 
 .divBtnMain {
@@ -127,7 +128,7 @@ footer {
   text-decoration: none;
   color: var(--text-color-btn);
   height: 60px;
-  width: 270px;
+  width: 300px;
   margin: 20px;
   font-size: 135%;
   border-radius: 0.5em;
@@ -160,23 +161,19 @@ footer {
   transform: scale(1.05);
 } 
 
-#userInput{
+#input{
   font-family: inherit;
   border: 0;
   outline: 0;
   background: transparent;
   border-bottom:solid #10abff;
   color: #1beabd;
-  font-size: 135%;
-  width: 270px;
+  font-size: 160%;
+  width: 300px;
   margin-top: 40px;
   margin-bottom: 5px;
 }
 
-#userInput::placeholder{
+#input::placeholder{
   color: #10abff;
-}
-
-#output {
-  text-align: center;
 }
