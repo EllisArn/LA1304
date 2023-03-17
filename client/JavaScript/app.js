@@ -5,6 +5,7 @@ const routes = {
   asia: { hash: '#asia', function: renderAsia },
   europe: { hash: '#europe', function: renderEurope },
   world: { hash: '#world', function: renderWorld },
+  error: { function: renderNotFound },
 }
 
 const router = new Router(routes)

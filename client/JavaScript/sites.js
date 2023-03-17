@@ -12,12 +12,8 @@ const renderHome = () => {
 }
 
 const renderAfrica = () => {
-  import('./quiz/europe.js').then((module) => {
-    module.europetest()
-  })
-
-  import('./renderEasyOrHard.js').then((module) => {
-    module.renderEasyOrHard()
+  import('./quiz/africa.js').then((module) => {
+    module.africatest()
   })
 }
 
@@ -43,4 +39,9 @@ const renderWorld = () => {
   import('./quiz/world.js').then((module) => {
     module.worldtest()
   })
+}
+
+const renderNotFound = () => {
+  main.innerHTML =
+    '<h1>404 Not Found</h1><a class="mainBtn" href="#home">Zurück zur Startseite</a>'
 }

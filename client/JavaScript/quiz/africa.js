@@ -1,3 +1,5 @@
+const main = document.querySelector('main')
+
 export function africatest() {
   fetch('http://localhost:3000/africa/')
     .then((response) => response.json())
