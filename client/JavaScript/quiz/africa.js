@@ -1,19 +1,12 @@
-const main = document.querySelector('main')
+import { startQuiz } from './quiz.js'
 
 export function africatest() {
   fetch('http://localhost:3000/africa/')
     .then((response) => response.json())
     .then((data) => {
-      data.sort(randomise)
-      data.forEach((element) => {
-        console.log(element)
-      })
+      startQuiz(data)
     })
     .catch((error) => {
       console.error(error)
     })
-}
-
-function randomise() {
-  return 0.5 - Math.random()
 }

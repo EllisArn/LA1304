@@ -2,7 +2,7 @@
   --blue-gradient-dark: linear-gradient(200deg, #14a586, #016aa3);
   --blue-gradient-light: linear-gradient(50deg, #1beabd, #10abff);
   --blue-gradient-light-reversed: linear-gradient(50deg, #10abff, #1beabd);
-  --green-gradient-dark: linear-gradient(360deg, #1c520a , #599c1e);
+  --green-gradient-dark: linear-gradient(360deg, #1c520a, #599c1e);
   --text-color-btn: #2d2d9c;
 }
 
@@ -11,17 +11,17 @@
   grid-template-columns: 1fr;
   grid-template-rows: autos;
   grid-template-areas:
-    "header"
-    "main"
-    "main"
-    "main"
-    "footer";
+    'header'
+    'main'
+    'main'
+    'main'
+    'footer';
   grid-auto-rows: auto;
   height: 100vh;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   color: white;
 }
@@ -56,7 +56,7 @@ footer {
   align-items: center;
 }
 
-#copyrightFooter{
+#copyrightFooter {
   margin: 0;
 }
 
@@ -100,7 +100,7 @@ footer {
 
 .mainBtn::before {
   position: absolute;
-  content: "";
+  content: '';
   top: 0;
   right: 0;
   bottom: 0;
@@ -115,11 +115,13 @@ footer {
 .mainBtn:hover::before {
   opacity: 1;
   transform: scale(1.02);
-} 
+}
 
 .mainBtn:hover {
   cursor: pointer;
   transform: scale(1.05);
-} 
+}
 
-
+#output {
+  text-align: center;
+}
