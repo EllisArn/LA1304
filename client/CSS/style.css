@@ -9,14 +9,11 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: autos;
+  grid-template-rows: 80px auto 80px;
   grid-template-areas:
     'header'
     'main'
-    'main'
-    'main'
     'footer';
-  grid-auto-rows: auto;
   height: 100vh;
 }
 
