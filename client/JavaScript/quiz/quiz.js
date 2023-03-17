@@ -15,7 +15,7 @@ export function startQuiz(data) {
 }
 
 export function quiz() {
-  main.innerHTML = `<div class="userCommand">Was ist die Hauptstadt von ${dataArr[i].Land}?</div>
+  quizContainer.innerHTML = `<div class="userCommand">Was ist die Hauptstadt von ${dataArr[i].Land}?</div>
   <input id="input" type="text" placeholder="Stadt" />
   <a class="mainBtnQuiz">Bestätigen</a>`
   const input = document.querySelector('#input')
@@ -34,7 +34,7 @@ function checkInput() {
   const input = document.querySelector('#input')
   let userInput = input.value
   if (userInput === dataArr[i].Hauptstadt) {
-    main.innerHTML = `<div class="userCommand">Richtig</div><a class="mainBtnQuiz">Weiter</a>`
+    quizContainer.innerHTML = `<div class="userCommand">Richtig</div><a class="mainBtnQuiz">Weiter</a>`
     document.querySelector('.mainBtnQuiz').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
@@ -42,13 +42,13 @@ function checkInput() {
       }
     })
   } else {
-    main.innerHTML = `<div class="userCommand">Falsch. Die Hauptstadt von ${dataArr[i].Land} ist ${dataArr[i].Hauptstadt}<br>Deine Eingabe war: "${userInput}"</div><a class="mainBtnQuiz">Weiter</a>`
+    quizContainer.innerHTML = `<div class="userCommand">Falsch. Die Hauptstadt von ${dataArr[i].Land} ist ${dataArr[i].Hauptstadt}<br>Deine Eingabe war: "${userInput}"</div><a class="mainBtnQuiz">Weiter</a>`
     document.querySelector('.mainBtnQuiz').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
         quiz(dataArr[i].Land, dataArr[i].Hauptstadt)
       } else {
-        main.innerHTML = `<div class="userCommand">Quiz beendet</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
+        quizContainer.innerHTML = `<div class="userCommand">Quiz beendet</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
         document.querySelector('#restart').addEventListener('click', () => {
           window.location.reload()
         })
@@ -83,7 +83,7 @@ function startTimer(duration, display) {
 
 function load() {
   console.log('hello world')
-  const durationInSeconds = 10 * 60 // 10 Minuten Countdown
+  const durationInSeconds = 5 * 60
   timer.innerHTML = `<div id="timer">Zeit: </div>`
   const display = document.getElementById('timer')
   startTimer(durationInSeconds, display)
