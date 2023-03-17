@@ -3,13 +3,29 @@ const main = document.querySelector('main')
 const renderHome = () => {
   main.innerHTML = `<p class="userCommand">Wählen Sie ein Gebiet</p>
   <div class="divBtnMain">
-      <a class="mainBtn" href="#africa">Afrika</a>
-      <a class="mainBtn" href="#america">Amerika</a>
-      <a class="mainBtn" href="#asia">Asien</a>
-      <a class="mainBtn" href="#europe">Europa</a>
-      <a class="mainBtn" href="#world">Ganze Welt</a>
+      <a class="mainBtn" id="africa">Afrika</a>
+      <a class="mainBtn" id="america">Amerika</a>
+      <a class="mainBtn" id="asia">Asien</a>
+      <a class="mainBtn" id="europe">Europa</a>
+      <a class="mainBtn" id="world">Ganze Welt</a>
   </div>`
+
+  document.querySelectorAll('.mainBtn').forEach((button) => {
+    button.addEventListener('click', () => {
+      import('./renderEasyOrHard.js').then((module) => {
+        module.renderEasyOrHard(button.id)
+      })
+    })
+  })
 }
+
+document.querySelectorAll('.mainBtn').forEach((button) => {
+  button.addEventListener('click', () => {
+    import('./renderEasyOrHard.js').then((module) => {
+      module.renderEasyOrHard(button.id)
+    })
+  })
+})
 
 const renderAfrica = () => {
   import('./quiz/africa.js').then((module) => {
