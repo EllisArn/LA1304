@@ -1,6 +1,10 @@
 const main = document.querySelector('main')
+const timer = document.querySelector('#timer')
+const quizContainer = document.querySelector('#quizContainer')
+
 let i = 0
 let dataArr = []
+load()
 
 export function startQuiz(data) {
   data.sort(randomise)
@@ -11,7 +15,7 @@ export function startQuiz(data) {
 }
 
 export function quiz() {
-  main.innerHTML = `<div>Was ist die Hauptstadt von ${dataArr[i].Land}?</div>
+  quizContainer.innerHTML = `<div>Was ist die Hauptstadt von ${dataArr[i].Land}?</div>
   <input id="input" type="text" />
   <a class="mainBtnQuiz">Bestätigen</a>`
   const input = document.querySelector('#input')
@@ -30,7 +34,7 @@ function checkInput() {
   const input = document.querySelector('#input')
   let userInput = input.value
   if (userInput === dataArr[i].Hauptstadt) {
-    main.innerHTML = `<div id="output">Richtig</div><button id="next">Weiter</button>`
+    quizContainer.innerHTML = `<div id="output">Richtig</div><button id="next">Weiter</button>`
     document.querySelector('#next').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
@@ -38,13 +42,13 @@ function checkInput() {
       }
     })
   } else {
-    main.innerHTML = `<div id="output">Falsch. Die Hauptstadt von ${dataArr[i].Land} ist ${dataArr[i].Hauptstadt}<br>Deine Eingabe war: "${userInput}"</div><button id="next">Weiter</button>`
+    quizContainer.innerHTML = `<div id="output">Falsch. Die Hauptstadt von ${dataArr[i].Land} ist ${dataArr[i].Hauptstadt}<br>Deine Eingabe war: "${userInput}"</div><button id="next">Weiter</button>`
     document.querySelector('#next').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
         quiz(dataArr[i].Land, dataArr[i].Hauptstadt)
       } else {
-        main.innerHTML = `<div>Quiz beendet</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn">Zurück zur Startseite</a>`
+        quizContainer.innerHTML = `<div>Quiz beendet</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn">Zurück zur Startseite</a>`
         document.querySelector('#restart').addEventListener('click', () => {
           window.location.reload()
         })
@@ -55,4 +59,32 @@ function checkInput() {
 
 function randomise() {
   return 0.5 - Math.random()
+}
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60)
+  const seconds = time % 60
+  return `Zeit: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+}
+
+function startTimer(duration, display) {
+  let time = duration
+  display.textContent = formatTime(time)
+  const intervalId = setInterval(() => {
+    time--
+    if (time < 0) {
+      clearInterval(intervalId)
+      display.textContent = 'Zeit abgelaufen!'
+    } else {
+      display.textContent = formatTime(time)
+    }
+  }, 1000)
+}
+
+function load() {
+  console.log('hello world')
+  const durationInSeconds = 10 * 60 // 10 Minuten Countdown
+  timer.innerHTML = `<div id="timer">Zeit: </div>`
+  const display = document.getElementById('timer')
+  startTimer(durationInSeconds, display)
 }
