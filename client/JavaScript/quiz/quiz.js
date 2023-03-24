@@ -2,19 +2,24 @@ const main = document.querySelector('main')
 const timer = document.querySelector('#timer')
 const quizContainer = document.querySelector('#quizContainer')
 
+let durationInSeconds
+
 let i = 0
 let dataArr = []
-load()
 
 export function startQuiz(data) {
   data.sort(randomise)
   data.forEach((element) => {
     dataArr.push(element)
   })
+
   quiz()
 }
 
 export function quiz() {
+  if (sessionStorage.getItem('difficulty') === 'hard') {
+    loadTimer()
+  }
   quizContainer.innerHTML = `<div class="userCommand">Was ist die Hauptstadt von ${dataArr[i].Land}?</div>
   <input id="input" type="text" placeholder="Stadt" />
   <a class="mainBtnQuiz">Bestätigen</a>`
@@ -61,6 +66,8 @@ function randomise() {
   return 0.5 - Math.random()
 }
 
+// Von hier an nach unten ist der Code von ChatGPT, jedoch haben wir ihn etwas angepasst
+
 function formatTime(time) {
   const minutes = Math.floor(time / 60)
   const seconds = time % 60
@@ -72,19 +79,28 @@ function startTimer(duration, display) {
   display.textContent = formatTime(time)
   const intervalId = setInterval(() => {
     time--
+    sessionStorage.setItem('time', time)
     if (time < 0) {
       clearInterval(intervalId)
       display.textContent = 'Zeit abgelaufen!'
     } else {
       display.textContent = formatTime(time)
     }
+    if (window.location.hash !== `#${sessionStorage.getItem('mode')}`) {
+      clearInterval(intervalId)
+      sessionStorage.clear()
+      timer.innerHTML = ''
+    }
   }, 1000)
 }
 
-function load() {
+function loadTimer() {
   console.log('hello world')
-  const durationInSeconds = 5 * 60
-  timer.innerHTML = `<div id="timer">Zeit: </div>`
-  const display = document.getElementById('timer')
-  startTimer(durationInSeconds, display)
+  if (sessionStorage.getItem('time')) {
+    durationInSeconds = sessionStorage.getItem('time')
+  } else {
+    durationInSeconds = 300
+  }
+  timer.textContent = `Zeit: `
+  startTimer(durationInSeconds, timer)
 }
