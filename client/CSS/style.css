@@ -184,3 +184,8 @@ footer {
 #input::placeholder{
   color: #10abff;
 }
+
+#timer{
+  font-size: 170%;
+  margin-top: 20px;
+}
