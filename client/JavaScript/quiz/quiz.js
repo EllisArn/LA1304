@@ -8,6 +8,7 @@ let i = 0
 let dataArr = []
 
 export function startQuiz(data) {
+  dataArr = []
   data.sort(randomise)
   data.forEach((element) => {
     dataArr.push(element)
@@ -70,6 +71,13 @@ function randomise() {
   return 0.5 - Math.random()
 }
 
+function endGame(){
+  quizContainer.innerHTML = `<div class="userCommand">Quiz beendet, erreichte Punktzahl: ${sessionStorage.getItem("userPoints")} von ${sessionStorage.getItem("maxPoints")}</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
+        document.querySelector('#restart').addEventListener('click', () => {
+          window.location.reload()
+        })
+}
+
 // Von hier an nach unten ist der Code von ChatGPT, jedoch haben wir ihn etwas angepasst
 
 function formatTime(time) {
@@ -87,6 +95,7 @@ function startTimer(duration, display) {
     if (time < 0) {
       clearInterval(intervalId)
       display.textContent = 'Zeit abgelaufen!'
+      endGame();
     } else {
       display.textContent = formatTime(time)
     }
