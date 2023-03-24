@@ -1,6 +1,6 @@
 import { startQuiz } from './quiz.js'
 
-export function worldtest() {
+export function worldQuiz() {
   fetch('http://localhost:3000/world/')
     .then((response) => response.json())
     .then((data) => {

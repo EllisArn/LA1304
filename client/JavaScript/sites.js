@@ -24,48 +24,63 @@ const renderHome = () => {
 }
 
 const renderAfrica = () => {
-  import('./renderEasyOrHard.js').then((module) => {
-    module.renderEasyOrHard('africa')
-  })
-  import('./quiz/africa.js').then((module) => {
-    module.africatest()
-  })
+  if (sessionStorage.getItem('mode') !== 'africa') {
+    import('./renderEasyOrHard.js').then((module) => {
+      module.renderEasyOrHard('africa')
+    })
+  } else {
+    import('./quiz/africa.js').then((module) => {
+      module.africaQuiz()
+    })
+  }
 }
 
 const renderAmerica = () => {
-  import('./renderEasyOrHard.js').then((module) => {
-    module.renderEasyOrHard('america')
-  })
-  import('./quiz/america.js').then((module) => {
-    module.americatest()
-  })
+  if (sessionStorage.getItem('mode') !== 'america') {
+    import('./renderEasyOrHard.js').then((module) => {
+      module.renderEasyOrHard('america')
+    })
+  } else {
+    import('./quiz/america.js').then((module) => {
+      module.americaQuiz()
+    })
+  }
 }
 
 const renderAsia = () => {
-  import('./renderEasyOrHard.js').then((module) => {
-    module.renderEasyOrHard('asia')
-  })
-  import('./quiz/asia.js').then((module) => {
-    module.asiatest()
-  })
+  if (sessionStorage.getItem('mode') !== 'asia') {
+    import('./renderEasyOrHard.js').then((module) => {
+      module.renderEasyOrHard('asia')
+    })
+  } else {
+    import('./quiz/asia.js').then((module) => {
+      module.asiaQuiz()
+    })
+  }
 }
 
 const renderEurope = () => {
-  import('./renderEasyOrHard.js').then((module) => {
-    module.renderEasyOrHard('europe')
-  })
-  import('./quiz/europe.js').then((module) => {
-    module.europetest()
-  })
+  if (sessionStorage.getItem('mode') !== 'europe') {
+    import('./renderEasyOrHard.js').then((module) => {
+      module.renderEasyOrHard('europe')
+    })
+  } else {
+    import('./quiz/europe.js').then((module) => {
+      module.europeQuiz()
+    })
+  }
 }
 
 const renderWorld = () => {
-  import('./renderEasyOrHard.js').then((module) => {
-    module.renderEasyOrHard('world')
-  })
-  import('./quiz/world.js').then((module) => {
-    module.worldtest()
-  })
+  if (sessionStorage.getItem('mode') !== 'world') {
+    import('./renderEasyOrHard.js').then((module) => {
+      module.renderEasyOrHard('world')
+    })
+  } else {
+    import('./quiz/world.js').then((module) => {
+      module.worldQuiz()
+    })
+  }
 }
 
 const renderNotFound = () => {

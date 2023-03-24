@@ -1,6 +1,6 @@
 import { startQuiz } from './quiz.js'
 
-export function asiatest() {
+export function asiaQuiz() {
   fetch('http://localhost:3000/asia/')
     .then((response) => response.json())
     .then((data) => {

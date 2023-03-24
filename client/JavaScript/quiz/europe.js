@@ -1,6 +1,6 @@
 import { startQuiz } from './quiz.js'
 
-export function europetest() {
+export function europeQuiz() {
   fetch('http://localhost:3000/europe/')
     .then((response) => response.json())
     .then((data) => {
