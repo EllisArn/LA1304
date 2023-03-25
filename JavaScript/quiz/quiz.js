@@ -8,11 +8,13 @@ let i = 0
 let dataArr = []
 
 export function startQuiz(data) {
+  dataArr = []
   data.sort(randomise)
   data.forEach((element) => {
     dataArr.push(element)
   })
-
+  sessionStorage.setItem("maxPoints", dataArr.length);
+  sessionStorage.setItem("userPoints", 0);
   quiz()
 }
 
@@ -39,7 +41,10 @@ function checkInput() {
   const input = document.querySelector('#input')
   let userInput = input.value
   if (userInput === dataArr[i].Hauptstadt) {
-    quizContainer.innerHTML = `<div class="userCommand">Richtig</div><a class="mainBtnQuiz">Weiter</a>`
+    quizContainer.innerHTML = `<div class="userCommand">Richtig, +1 Punkt</div><a class="mainBtnQuiz">Weiter</a>`
+    var cachePoints = sessionStorage.getItem("userPoints")
+    cachePoints++
+    sessionStorage.setItem("userPoints", cachePoints)
     document.querySelector('.mainBtnQuiz').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
@@ -53,7 +58,7 @@ function checkInput() {
         i++
         quiz(dataArr[i].Land, dataArr[i].Hauptstadt)
       } else {
-        quizContainer.innerHTML = `<div class="userCommand">Quiz beendet</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
+        quizContainer.innerHTML = `<div class="userCommand">Quiz beendet, erreichte Punktzahl: ${sessionStorage.getItem("userPoints")} von ${sessionStorage.getItem("maxPoints")}</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
         document.querySelector('#restart').addEventListener('click', () => {
           window.location.reload()
         })
@@ -64,6 +69,13 @@ function checkInput() {
 
 function randomise() {
   return 0.5 - Math.random()
+}
+
+function endGame(){
+  quizContainer.innerHTML = `<div class="userCommand">Quiz beendet, erreichte Punktzahl: ${sessionStorage.getItem("userPoints")} von ${sessionStorage.getItem("maxPoints")}</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
+        document.querySelector('#restart').addEventListener('click', () => {
+          window.location.reload()
+        })
 }
 
 // Von hier an nach unten ist der Code von ChatGPT, jedoch haben wir ihn etwas angepasst
@@ -83,6 +95,7 @@ function startTimer(duration, display) {
     if (time < 0) {
       clearInterval(intervalId)
       display.textContent = 'Zeit abgelaufen!'
+      endGame();
     } else {
       display.textContent = formatTime(time)
     }
