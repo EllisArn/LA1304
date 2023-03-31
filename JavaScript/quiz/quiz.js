@@ -8,13 +8,20 @@ let i = 0
 let dataArr = []
 
 export function startQuiz(data) {
-  dataArr = []
-  data.sort(randomise)
-  data.forEach((element) => {
-    dataArr.push(element)
-  })
-  sessionStorage.setItem("maxPoints", dataArr.length);
-  sessionStorage.setItem("userPoints", 0);
+  if (!sessionStorage.getItem('quizData')) {
+    dataArr = []
+    data.sort(randomise)
+    data.forEach((element) => {
+      dataArr.push(element)
+    })
+    sessionStorage.setItem('quizData', JSON.stringify(dataArr))
+    sessionStorage.setItem('i', i)
+    sessionStorage.setItem('maxPoints', dataArr.length)
+    sessionStorage.setItem('userPoints', 0)
+  } else {
+    dataArr = JSON.parse(sessionStorage.getItem('quizData'))
+    i = parseInt(sessionStorage.getItem('i'))
+  }
   quiz()
 }
 
@@ -39,16 +46,20 @@ export function quiz() {
 
 function checkInput() {
   const input = document.querySelector('#input')
-  let userInput = input.value
-  if (userInput === dataArr[i].Hauptstadt) {
+  let userInput = input.value.toLowerCase()
+  if (userInput === dataArr[i].Hauptstadt.toLowerCase()) {
     quizContainer.innerHTML = `<div class="userCommand">Richtig, +1 Punkt</div><a class="mainBtnQuiz">Weiter</a>`
-    var cachePoints = sessionStorage.getItem("userPoints")
+    var cachePoints = sessionStorage.getItem('userPoints')
     cachePoints++
-    sessionStorage.setItem("userPoints", cachePoints)
+    sessionStorage.setItem('userPoints', cachePoints)
+
     document.querySelector('.mainBtnQuiz').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
-        quiz(dataArr[i].Land, dataArr[i].Hauptstadt)
+        sessionStorage.setItem('i', i)
+        quiz()
+      } else {
+        endGame()
       }
     })
   } else {
@@ -56,12 +67,10 @@ function checkInput() {
     document.querySelector('.mainBtnQuiz').addEventListener('click', () => {
       if (i < dataArr.length - 1) {
         i++
-        quiz(dataArr[i].Land, dataArr[i].Hauptstadt)
+        sessionStorage.setItem('i', i)
+        quiz()
       } else {
-        quizContainer.innerHTML = `<div class="userCommand">Quiz beendet, erreichte Punktzahl: ${sessionStorage.getItem("userPoints")} von ${sessionStorage.getItem("maxPoints")}</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
-        document.querySelector('#restart').addEventListener('click', () => {
-          window.location.reload()
-        })
+        endGame()
       }
     })
   }
@@ -71,11 +80,19 @@ function randomise() {
   return 0.5 - Math.random()
 }
 
-function endGame(){
-  quizContainer.innerHTML = `<div class="userCommand">Quiz beendet, erreichte Punktzahl: ${sessionStorage.getItem("userPoints")} von ${sessionStorage.getItem("maxPoints")}</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
-        document.querySelector('#restart').addEventListener('click', () => {
-          window.location.reload()
-        })
+function endGame() {
+  quizContainer.innerHTML = `<div class="userCommand">Quiz beendet, erreichte Punktzahl: ${sessionStorage.getItem(
+    'userPoints'
+  )} von ${sessionStorage.getItem(
+    'maxPoints'
+  )}</div><a class="mainBtn" id="restart">Neustart</a><a class="mainBtn" href="#">Zurück zur Startseite</a>`
+  document.querySelector('#restart').addEventListener('click', () => {
+    sessionStorage.removeItem('quizData')
+    sessionStorage.removeItem('i')
+    sessionStorage.removeItem('maxPoints')
+    sessionStorage.removeItem('userPoints')
+    window.location.reload()
+  })
 }
 
 // Von hier an nach unten ist der Code von ChatGPT, jedoch haben wir ihn etwas angepasst
@@ -95,7 +112,7 @@ function startTimer(duration, display) {
     if (time < 0) {
       clearInterval(intervalId)
       display.textContent = 'Zeit abgelaufen!'
-      endGame();
+      endGame()
     } else {
       display.textContent = formatTime(time)
     }
@@ -111,7 +128,11 @@ function loadTimer() {
   if (sessionStorage.getItem('time')) {
     durationInSeconds = sessionStorage.getItem('time')
   } else {
-    durationInSeconds = 300
+    if (sessionStorage.getItem('mode') === 'world') {
+      durationInSeconds = 900
+    } else {
+      durationInSeconds = 300
+    }
   }
   timer.textContent = `Zeit: `
   startTimer(durationInSeconds, timer)

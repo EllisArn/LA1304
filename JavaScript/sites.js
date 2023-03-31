@@ -3,6 +3,7 @@ const quizContainer = document.querySelector('#quizContainer')
 const timer = document.querySelector('#timer')
 
 const renderHome = () => {
+  console.log(sessionStorage.getItem('maxPoints'))
   sessionStorage.clear()
   timer.innerHTML = ''
   quizContainer.innerHTML = `<p class="userCommand">Wählen Sie ein Gebiet</p>
